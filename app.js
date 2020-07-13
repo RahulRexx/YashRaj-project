@@ -10,14 +10,15 @@ var request = require('request');
 
 
 // let uri = "mongodb+srv://YashRaj:Yash1998@blogapp.shvdu.mongodb.net/yelpcamp?retryWrites=true&w=majority";
+let uri = 'mongodb+srv://rahuluser:rahulraj@todoapp-kzfjc.mongodb.net/yashraj?retryWrites=true';
 
 // mongoose.connect(uri, { useNewUrlParser: true });
 
-let uri = 'mongodb://localhost/yashrajYelpCamp' ;
+// let uri = 'mongodb://localhost/yashrajYelpCamp' ;
 
-let newUri = uri || process.env.MONGODB_URI ;
+// let newUri = uri || process.env.MONGODB_URI ;
 
-mongoose.connect(newUri, {
+mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
