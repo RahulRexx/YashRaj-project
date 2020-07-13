@@ -16,9 +16,9 @@ let uri = 'mongodb+srv://rahuluser:rahulraj@todoapp-kzfjc.mongodb.net/yashraj?re
 
 // let uri = 'mongodb://localhost/yashrajYelpCamp' ;
 
-// let newUri = uri || process.env.MONGODB_URI ;
+let newUri = uri || process.env.MONGODB_URI ;
 
-mongoose.connect(uri, {
+mongoose.connect(newUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -58,6 +58,7 @@ app.use(function(req, res, next) {
 app.use(indexRoutes);
 app.use(commentRoutes);
 app.use(campRoutes);
+
 let port = 3000 || process.env.PORT ;
 
 // process.env.IP
