@@ -1,29 +1,31 @@
+require("./config/config.js")
 var express = require("express");
 var app = express();
 var bodyparser = require("body-parser");
 var flash = require("connect-flash");
-var mongoose = require("mongoose");
+// var mongoose = require("mongoose");
+var {mongoose} = require("./db/mongoose.js");
 var passport = require("passport");
 var localStrategy = require("passport-local");
 var nodemailer = require('nodemailer');
 var request = require('request');
 
 
-// let uri = "mongodb+srv://YashRaj:Yash1998@blogapp.shvdu.mongodb.net/yelpcamp?retryWrites=true&w=majority";
-let uri = 'mongodb+srv://rahuluser:rahulraj@todoapp-kzfjc.mongodb.net/yashraj?retryWrites=true';
+// // let uri = "mongodb+srv://YashRaj:Yash1998@blogapp.shvdu.mongodb.net/yelpcamp?retryWrites=true&w=majority";
+// let uri = 'mongodb+srv://rahuluser:rahulraj@todoapp-kzfjc.mongodb.net/yashraj?retryWrites=true';
 
-// mongoose.connect(uri, { useNewUrlParser: true });
+// // mongoose.connect(uri, { useNewUrlParser: true });
 
-// let uri = 'mongodb://localhost/yashrajYelpCamp' ;
+// // let uri = 'mongodb://localhost/yashrajYelpCamp' ;
 
-let newUri = uri || process.env.MONGODB_URI ;
+// let newUri = uri || process.env.MONGODB_URI ;
 
-mongoose.connect(newUri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false
-});
+// mongoose.connect(newUri, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//     useCreateIndex: true,
+//     useFindAndModify: false
+// });
 
 var Campground = require("./models/campground");
 var Comment = require("./models/comment")
@@ -39,7 +41,7 @@ app.use(flash());
 //seedDB();
 
 app.use(require("express-session")({
-    secret: "jo man hai kar",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false
 }))
@@ -59,10 +61,10 @@ app.use(indexRoutes);
 app.use(commentRoutes);
 app.use(campRoutes);
 
-let port = 3000 || process.env.PORT ;
+// let port = 3000 ||  ;
 
 // process.env.IP
 
-app.listen(port, function() {
-    console.log("yelpcamp started on", port);
+app.listen(process.env.PORT, function () {
+    console.log("yelpcamp started");
 })
